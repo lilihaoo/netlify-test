@@ -34,8 +34,13 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String,
+    msg: Object,
   },
+  computed: {
+    getMsg() {
+      console.log('111-2', this.msg)
+    }
+  }
 };
 </script>
 
