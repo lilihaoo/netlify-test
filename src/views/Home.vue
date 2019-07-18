@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld :msg="obj" />
+    <!-- <keep-alive> -->
+      <!-- <HelloWorld ref="video" :msg="obj" /> -->
+    <!-- </keep-alive> -->
     <video ref="videoPlayer" class="video-js"></video>
   </div>
 </template>
@@ -13,7 +15,7 @@ import "video.js/dist/video-js.css";
 import "videojs-flash/dist/videojs-flash";
 import SWF_PATH from "videojs-swf/dist/video-js.swf";
 // eslint-disable-next-line import/no-unresolved
-import HelloWorld from '../components/HelloWorld'
+// import HelloWorld from "../components/HelloWorld";
 
 videojs.options.flash.swf = SWF_PATH;
 // vjs.prototype.play = function play() {
@@ -27,41 +29,58 @@ videojs.options.flash.swf = SWF_PATH;
 export default {
   name: "home",
   components: {
-    HelloWorld
+    // HelloWorld
   },
   data() {
     return {
       obj: {
-        name: "a",
-        fav: [{ a: "1", b: "2" }, { c: "3", d: "4" }],
-        age: 10
-      }
+        // name: "a",
+        fav: [{ a: "1", b: "2" }, { c: "3", d: "4" }]
+        // age: 10
+      },
+      player: null
     };
   },
   created() {
-    console.log('111-1',this.obj)
+    console.log("111-1", this.obj);
   },
   mounted() {
+    console.log('传到home里params', this.$route.params)
+    console.log('传到home里query', this.$route.query)
+    // eslint-disable-next-line
+    // debugger
     const options = {
       autoplay: true,
       controls: true,
+      muted: true,
       sources: [
+        // {
+        //   src: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+        //   type: "rtmp/flv"
+        // }
         {
-          src: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
-          type: "rtmp/flv"
+          src: "https://vjs.zencdn.net/v/oceans.mp4",
+          type: "video/mp4"
         }
       ],
-      width: "300px",
-      height: "200px"
+      width: "600px",
+      height: "400px"
     };
-    videojs(this.$refs.videoPlayer, options, function onPlayerReady() {
+    this.player = videojs(this.$refs.videoPlayer, options, function onPlayerReady() {
       console.log("onPlayerReady", this);
     });
   },
+  activated() {
+    this.player.play()
+  },
+  deactivated() {
+    this.player.pause()
+  },
   beforeDestroy() {
-    if (this.player) {
-      this.player.dispose();
-    }
+    // if (this.player) {
+      console.log('home销毁')
+      // this.$refs.video.$refs.videoPlayer.dispose();
+    // }
   }
 };
 </script>

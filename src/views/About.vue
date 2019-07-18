@@ -1,22 +1,68 @@
 <template>
-  <!-- <div class="about"> -->
+  <div class="about">
     <div class="rd-word-cloud" ref="wordCloud"></div>
-  <!-- </div> -->
+    <button
+      v-for="tab in tabs"
+      v-bind:key="tab"
+      v-bind:class="['tab-button', { active: currentTab === tab }]"
+      v-on:click="currentTab = tab"
+    >
+      {{ tab }}
+    </button>
+    <!-- <keep-alive>
+      <component v-bind:is="currentTabComponent" class="tab"></component>
+    </keep-alive> -->
+    <tabContent :slotName="currentTab">
+      <template #Posts>
+        <!-- <tabPosts></tabPosts> -->
+        <input type="text" v-model="search">
+      </template>
+      <template #Archive>
+        <tabArchive></tabArchive>
+      </template>
+    </tabContent>
+  </div>
 </template>
 
 <script>
-const echarts = require('echarts');
-require('echarts-wordcloud');
+import tabContent from "../components/tab-content.vue";
+import tabArchive from "../components/tab-archive.vue";
+import tabPosts from "../components/tab-posts.vue";
+
+const echarts = require("echarts");
+require("echarts-wordcloud");
 
 export default {
+  name: "about",
   data() {
     return {
       chart: null,
-      option: null
+      option: null,
+      currentTab: "Posts",
+      tabs: ["Posts", "Archive"],
+      search: ''
     };
   },
+  components: {
+    tabArchive,
+    tabPosts,
+    tabContent
+  },
+  computed: {
+    currentTabComponent() {
+      return `tab${this.currentTab}`;
+    }
+  },
   mounted() {
+    console.log("传到about里params", this.$route.params);
+
     this.initChart();
+  },
+  beforeDestroy() {
+    // if (this.player) {
+    console.log("about销毁");
+    // this.$refs.video.$refs.videoPlayer.dispose();
+    // }
   },
   methods: {
     initChart() {
@@ -24,14 +70,11 @@ export default {
       function createRandomItemStyle() {
         return {
           normal: {
-            color:
-              `rgb(${ 
-              [
-                Math.round(Math.random() * 160),
-                Math.round(Math.random() * 160),
-                Math.round(Math.random() * 160)
-              ].join(",") 
-              })`
+            color: `rgb(${[
+              Math.round(Math.random() * 160),
+              Math.round(Math.random() * 160),
+              Math.round(Math.random() * 160)
+            ].join(",")})`
           }
         };
       }
@@ -165,15 +208,35 @@ export default {
       };
       // 绘制图表
       this.chart.setOption(this.option);
-    },
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
 .rd-word-cloud {
   width: 600px;
   height: 165px;
+}
+.tab-button {
+  padding: 6px 10px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #f0f0f0;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.tab-button:hover {
+  background: #e0e0e0;
+}
+.tab-button.active {
+  background: #e0e0e0;
+}
+.tab {
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 </style>
 
