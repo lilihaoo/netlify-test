@@ -9,10 +9,12 @@
         >About</router-link
       >
     </div>
+    <!-- keep-alive只对可以切换组件的标签起作用 router-view、components、slot-->
+    <!-- router-view 放置name相同的组件切换时，使用router中定义meta属性来控制缓存 -->
     <keep-alive>
-      <router-view name="home"></router-view>
+      <router-view v-if="$route.meta.keepAlive" name="home"></router-view>
     </keep-alive>
-    <router-view name="about"></router-view>
+    <router-view v-if="!$route.meta.keepAlive" name="home"></router-view>
   </div>
 </template>
 

@@ -15,8 +15,19 @@ export default new Router({
       components: {
         home: Home
       },
+      meta: {
+        keepAlive: true
+      }
       // redirect: '/home'
     },
+    {
+      path: '/about',
+      name: 'about',
+      components: {
+        home: About
+      }
+      // redirect: '/home'
+    }
     // {
     //   path: '/home',
     //   name: 'home',
@@ -27,20 +38,20 @@ export default new Router({
     //     keepAlive: true
     //   }
     // },
-    {
-      path: '/about',
-      name: 'about',
-      // meta: {
-      //   keepAlive: false
-      // },
-      components: {
-        about: About
-      },
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // eslint-disable-next-line
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   // meta: {
+    //   //   keepAlive: false
+    //   // },
+    //   components: {
+    //     about: About
+    //   },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    // eslint-disable-next-line
+    // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    // }
   ]
 })

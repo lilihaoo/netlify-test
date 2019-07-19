@@ -1,12 +1,15 @@
 <template>
   <div class="hello">
-    <video ref="videoPlayer" class="video-js"></video>    
+    <!-- <video ref="videoPlayer" class="video-js"></video> -->
+    <div>HelloWorld组件：（父组件Home给子组件props传递的值）--{{ msg }}</div>
+    <button @click="passData">点击传值给父组件</button>
+    <button @click="deleteData">删除给父组件的值</button>
   </div>
 </template>
 
 <script>
-import videojs from "video.js";
-import "video.js/dist/video-js.css";
+// import videojs from "video.js";
+// import "video.js/dist/video-js.css";
 
 export default {
   name: "HelloWorld",
@@ -15,8 +18,9 @@ export default {
   },
   data() {
     return {
-      player: null
-    }
+      player: null,
+      helloWorldData: ""
+    };
   },
   computed: {
     getMsg() {
@@ -24,33 +28,47 @@ export default {
       return Object.assign({ fav: [] }, this.msg);
     }
   },
+  methods: {
+    passData() {
+      this.helloWorldData = "我是passData传递的值";
+      this.$emit("pass-data", this.helloWorldData);
+    },
+    deleteData() {
+      this.helloWorldData = "";
+      this.$emit("pass-data", this.helloWorldData);
+    }
+  },
   mounted() {
-    const options = {
-      autoplay: true,
-      controls: true,
-      muted: true,
-      sources: [
-        // {
-        //   src: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
-        //   type: "rtmp/flv"
-        // }
-        {
-          src: "https://vjs.zencdn.net/v/oceans.mp4",
-          type: "video/mp4"
-        }
-      ],
-      width: "600px",
-      height: "400px"
-    };
-     this.player = videojs(this.$refs.videoPlayer, options, function onPlayerReady() {
-      console.log("onPlayerReady", this);
-    });
+    // const options = {
+    //   autoplay: true,
+    //   controls: true,
+    //   muted: true,
+    //   sources: [
+    //     // {
+    //     //   src: "rtmp://202.69.69.180:443/webcast/bshdlive-pc",
+    //     //   type: "rtmp/flv"
+    //     // }
+    //     {
+    //       src: "https://vjs.zencdn.net/v/oceans.mp4",
+    //       type: "video/mp4"
+    //     }
+    //   ],
+    //   width: "600px",
+    //   height: "400px"
+    // };
+    // this.player = videojs(
+    //   this.$refs.videoPlayer,
+    //   options,
+    //   function onPlayerReady() {
+    //     console.log("onPlayerReady", this);
+    //   }
+    // );
   },
   activated() {
-    this.player.play()
+    this.player.play();
   },
   deactivated() {
-    this.player.pause()
+    this.player.pause();
   }
 };
 </script>
