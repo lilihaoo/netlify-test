@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/?id=456"
-        >Home</router-link
+        >组件传值</router-link
       >
       |
       <router-link :to="{ name: 'about', params: { id: 123 } }"
@@ -12,7 +12,7 @@
     <!-- keep-alive只对可以切换组件的标签起作用 router-view、components、slot-->
     <!-- router-view 放置name相同的组件切换时，使用router中定义meta属性来控制缓存 -->
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" name="home"></router-view>
+      <router-view v-if="$route.meta.keepAlive" name="ComponentsPassValue"></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive" name="home"></router-view>
   </div>

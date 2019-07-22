@@ -1,7 +1,7 @@
 <template>
   <div>Archive component
     <div>Home组件中引用（用BusEvent接收来自Home的数据）--{{fromBusData}}</div>
-    <button @click="passArchiveData">Home组件（BusEvent给其他组件传递值）{{this.homeData}}</button>
+    <button @click="passArchiveData">Home组件（BusEvent给其他组件传递值）{{this.archiveData}}</button>
 
   </div>
 </template>

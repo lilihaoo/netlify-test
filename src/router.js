@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import About from './views/About.vue'
+// import ComponentsPassValue from './views/ComponentsPassValue.vue'
+
+const ComponentsPassValue = () => import('./views/ComponentsPassValue.vue')
 
 Vue.use(Router)
 
@@ -11,9 +13,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'componentsPassValue',
       components: {
-        home: Home
+        ComponentsPassValue
       },
       meta: {
         keepAlive: true

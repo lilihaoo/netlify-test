@@ -1,9 +1,14 @@
 <template>
   <div class="hello">
     <!-- <video ref="videoPlayer" class="video-js"></video> -->
-    <div>HelloWorld组件：（父组件Home给子组件props传递的值）--{{ msg }}</div>
+    <div>
+      <p>--- PassByProps component ---</p>
+      PassByProps组件：（Parent组件通过props传递的值）--
+      <span :style="{ color: 'red' }">{{ msg }} </span>
+    </div>
     <button @click="passData">点击传值给父组件</button>
     <button @click="deleteData">删除给父组件的值</button>
+    <p>--- PassByProps component end---</p>
   </div>
 </template>
 
@@ -12,14 +17,14 @@
 // import "video.js/dist/video-js.css";
 
 export default {
-  name: "HelloWorld",
+  name: "PassByProps",
   props: {
     msg: Object
   },
   data() {
     return {
       player: null,
-      helloWorldData: ""
+      passByPropsData: ""
     };
   },
   computed: {
@@ -30,12 +35,12 @@ export default {
   },
   methods: {
     passData() {
-      this.helloWorldData = "我是passData传递的值";
-      this.$emit("pass-data", this.helloWorldData);
+      this.passByPropsData = "我是passData传递的值";
+      this.$emit("pass-data", this.passByPropsData);
     },
     deleteData() {
-      this.helloWorldData = "";
-      this.$emit("pass-data", this.helloWorldData);
+      this.passByPropsData = "";
+      this.$emit("pass-data", this.passByPropsData);
     }
   },
   mounted() {
@@ -65,10 +70,10 @@ export default {
     // );
   },
   activated() {
-    this.player.play();
+    // this.player.play();
   },
   deactivated() {
-    this.player.pause();
+    // this.player.pause();
   }
 };
 </script>
