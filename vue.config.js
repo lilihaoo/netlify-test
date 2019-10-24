@@ -1,4 +1,4 @@
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = {
   lintOnSave: true,
@@ -11,9 +11,9 @@ module.exports = {
       .loader('file-loader')
       .end()
   },
-  configureWebpack: {
-    plugins: [
-      new MonacoWebpackPlugin()
-    ]
-  }
+  // configureWebpack: {
+  //   plugins: [
+  //     new MonacoWebpackPlugin()
+  //   ]
+  // }
 }

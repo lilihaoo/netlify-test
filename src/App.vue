@@ -8,9 +8,9 @@
       <router-link :to="{ name: 'about', params: { id: 123 } }"
         >About</router-link
       >
-      <router-link to="/editor"
+      <!-- <router-link to="/editor"
         >editor</router-link
-      >
+      > -->
     </div>
     <!-- keep-alive只对可以切换组件的标签起作用 router-view、components、slot-->
     <!-- router-view 放置name相同的组件切换时，使用router中定义meta属性来控制缓存 -->
