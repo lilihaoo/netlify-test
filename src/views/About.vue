@@ -57,6 +57,7 @@ export default {
     console.log("传到about里params", this.$route.params);
 
     this.initChart();
+    console.log('练习合并多次本地commit--1')
   },
   beforeDestroy() {
     // if (this.player) {
