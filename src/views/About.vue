@@ -58,6 +58,7 @@ export default {
 
     this.initChart();
     console.log('练习合并多次本地commit--1')
+    console.log('练习合并多次本地commit--2')
   },
   beforeDestroy() {
     // if (this.player) {
