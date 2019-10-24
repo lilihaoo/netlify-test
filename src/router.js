@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import About from './views/About.vue'
+import Editor from './views/Editor.vue'
 // import ComponentsPassValue from './views/ComponentsPassValue.vue'
 
 const ComponentsPassValue = () => import('./views/ComponentsPassValue.vue')
@@ -27,6 +28,14 @@ export default new Router({
       name: 'about',
       components: {
         home: About
+      }
+      // redirect: '/home'
+    },
+    {
+      path: '/editor',
+      name: 'editor',
+      components: {
+        home: Editor
       }
       // redirect: '/home'
     }

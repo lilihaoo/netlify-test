@@ -1,3 +1,5 @@
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+
 module.exports = {
   lintOnSave: true,
   chainWebpack: config => {
@@ -8,5 +10,10 @@ module.exports = {
       .use('file-loader')
       .loader('file-loader')
       .end()
+  },
+  configureWebpack: {
+    plugins: [
+      new MonacoWebpackPlugin()
+    ]
   }
 }

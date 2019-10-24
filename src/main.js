@@ -1,9 +1,16 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 // eslint-disable-next-line
 import router from './router'
 import store from './store'
+
+const webpackNumbers  = require('webpack-publish-package')
 // import Permission from './permission'
+
+console.log(webpackNumbers.numToWord(2))
+Vue.use(ElementUI);
 
 // const per = new Permission(router)
 // const config = {
